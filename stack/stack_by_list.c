@@ -7,3 +7,28 @@
 //4. pop
 //5. empty
 
+typedef struct {
+  int item;
+  struct List* next;
+} *List;
+
+typedef struct {
+  int size;
+  List* list;
+} Stack;
+
+void create_stack(Stack* stack) {
+  stack = malloc(sizeof(Stack));
+  stack->size = 0;
+  stack->list = NULL;
+}
+
+
+int main() {
+  Stack *stack;
+  create_stack(stack);
+  printf("%d", stack->size);
+  return 0;
+}
+
+
