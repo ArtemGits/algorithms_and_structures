@@ -3,12 +3,12 @@
 
 #include <stdlib.h>
 
-struct Task{
+struct Task {
 	int task_id;
 	int priority;
 };
 
-struct Heap{
+struct Heap {
 	int capacity;
 	int size;
 	struct Task **data;
@@ -29,3 +29,5 @@ int full_heap(heap_type heap);
 void hold_heap(heap_type heap,int pos);
 void decrease_priority(heap_type heap,int where,int priority);
 void increase_priority(heap_type heap,int where,int priority);
+
+#endif

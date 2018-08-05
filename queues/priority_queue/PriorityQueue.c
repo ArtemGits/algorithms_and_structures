@@ -2,28 +2,28 @@
 #include "PriorityQueue.h"
 
 
-struct Task *create_task(int taskid, int priority) {
-	struct Task *task = malloc(siziof(struct Task));
+struct Task *create_task(int task_id, int priority) {
+	struct Task *task = malloc(sizeof(struct Task));
 	if(task) {
-		task->taskid = taskid;
+		task->task_id = task_id;
 		task->priority = priority;
 	}
 	return task;
 }
 
-heaptype create_heap(int capacity) {
-	heaptype heap = malloc(sizeof(struct Heap));
+heap_type create_heap(int capacity) {
+	heap_type heap = malloc(sizeof(struct Heap));
 	if(!heap) {
 		printf("When this calling?");
 		return heap;
 	}
 	heap->size = 0;
 	heap->capacity = capacity;
-	heap->data = malloc(sizeof(struct Task *) * capacity)
+	heap->data = malloc(sizeof(struct Task *) * capacity);
 	return heap;
 }
 
-void insert_in_heap(heaptype heap, tasktype task) {
+void insert_in_heap(heap_type heap, tasktype task) {
 	int current_pos = heap->size;
 	int parrent_pos;
 
