@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "PriorityQueue.h"
 
 
@@ -23,18 +24,28 @@ heap_type create_heap(int capacity) {
 	return heap;
 }
 
-void insert_in_heap(heap_type heap, tasktype task) {
+void check_heap(heap_type heap) {
+	// Смотрим чтобы у всей кучи приоритеты были по убыванию
+	while( (parrent_pos = ((heap->size - 1) >> 1) >= 0 && 
+		heap->data[current_pos]->priority > 
+		heap->data[parrent_pos]->priority) ) {
+		swap_heap(heap, current_pos, parrent_pos);
+		current_pos = parrent_pos;
+	}
+}
+
+void insert_in_heap(heap_type heap, task_type task) {
 	int current_pos = heap->size;
 	int parrent_pos;
 
-	if(is_Empty(heap))
-		return
+	//if(empty_heap(heap))
+		//return
 	heap->data[heap->size] = task;
 	heap->size++;
-	check_heap();
+	check_heap(heap);
 }
 
-int is_Empty(heaptype heap) {
+int is_Empty(heap_type heap) {
 	if (heap->size != 0) {
 		return heap->size;
 	} else {
@@ -44,13 +55,13 @@ int is_Empty(heaptype heap) {
 
 }
 
-void swap_heap(heaptype heap, current_pos, parrent_pos) {
-	tasktype tmp = heap->data[current_pos];
+void swap_heap(heap_type heap,int current_pos, int parrent_pos) {
+	task_type tmp = heap->data[current_pos];
 	heap->data[current_pos] = heap->data[parrent_pos];
 	heap->data[parrent_pos] = tmp;
 }
 
-void increase_priority(heaptype heap, int task_id, int priority) {
+void increase_priority(heap_type heap, int task_id, int priority) {
 	where = get_task_by_id(heap, task_id); //position
 
 	if(where == -1 || is_Empty() || heap->data[where]->priority >= priority)
@@ -60,7 +71,7 @@ void increase_priority(heaptype heap, int task_id, int priority) {
 	check_heap();
 }
 
-void decrease_priority(heaptype heap, int taskid, int priority) {
+void decrease_priority(heap_type heap, int taskid, int priority) {
 	where = get_task_by_id(heap, task_id); //position
 
 	if(where == -1 || is_Empty() || heap->data[where]->priority <= priority)
@@ -70,12 +81,4 @@ void decrease_priority(heaptype heap, int taskid, int priority) {
 	
 }
 
-void check_heap(heaptype heap) {
-	// Смотрим чтобы у всей кучи приоритеты были по убыванию
-	while( (parrent_pos = ((heap->size - 1) >> 1) >= 0 && 
-		heap->data[current_pos]->priority > 
-		heap->data[parrent_pos]->priority) ) {
-		swap_heap(heap, current_pos, parrent_pos);
-		current_pos = parrent_pos;
-	}
-}
+
