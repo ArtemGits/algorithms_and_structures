@@ -20,14 +20,17 @@ typedef struct Task *task_type;
 void swap_heap(heap_type heap,int pos1,int pos2);
 
 heap_type create_heap(int capacity);
+task_type create_task(int, int);
 void insert_in_heap(heap_type heap,struct Task *newtask);
-
-int empty_heap(heap_type heap);
+void print_heap(heap_type);
+int is_Empty(heap_type heap);
 
 int full_heap(heap_type heap);
+void check_heap(heap_type, int, int);
+void hold_heap(heap_type heap);
 
-void hold_heap(heap_type heap,int pos);
 void decrease_priority(heap_type heap,int where,int priority);
 void increase_priority(heap_type heap,int where,int priority);
-
+task_type delete_min(heap_type heap);
+void destroy_heap(heap_type heap);
 #endif
