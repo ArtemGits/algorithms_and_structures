@@ -10,9 +10,8 @@
      return (1);
    }
 
-   //struct Graph* map = read_map(argv[1]);
-   read_map(argv[1]);
-   //display_map(map);
+   struct Graph* map = read_map(argv[1]);
+   display_map(map);
 
   return 0;
 }
