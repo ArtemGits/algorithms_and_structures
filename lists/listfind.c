@@ -39,17 +39,17 @@ int main(int argc, char const *argv[]) {
 	/* code */
 	int data[] = { 1,2,3,4,5,6,7,8,9,10 };
 	int size = sizeof(data)/sizeof(int);
-	llink* list = NULL;
+	llink list = NULL;
 	for(int i=0; i<size; i++) {
-		insert_element(list, data[i]);
+		insert_element(&list, data[i]);
 	}
 	llink mid = find_middle_of_the_list(list);
-	printf("Middle element %d\n", mid->vertex );
+	printf("Middle element %d\n", mid->vertx );
 	llink k = NULL;
-	for(int i=0; i<=size; i++) {
+	for(int i=0; i<size; i++) {
 		k = get_klast_item(list, i);
 		if(k)
-			printf("%d last=%d\n", i, k->vertex)
+			printf("%d last=%d\n", i, k->vertx);
 	}
 	return 0;
 }
