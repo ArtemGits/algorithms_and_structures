@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
-void insert_element(List* head , int element) {
-    List new = malloc(sizeof(struct List));
+
+void insert_element(llink* head , int element) {
+    llink new = malloc(sizeof(struct List));
     if(!new) // if fail while memory allocation
         return;
    
@@ -13,22 +15,26 @@ void insert_element(List* head , int element) {
         return;
     }
     
-    List cur = *head;
+    llink cur = *head;
 
     while(cur->next)
         cur = cur->next;
     
     cur->next = new;
-
 }
 
-void display_list(List list) {
-    while(list) {
-        printf("List element is: %d", list->vertx);
+void display_list(llink list) {
+  if(!list) {
+    printf("List is empty\n");
+    return;
+  } else {
+      while(list) {
+        printf("List element is: %d \n", list->vertx);
         list = list->next;
     }
-
     printf("\n");
+
+  }
 }
 
 int list_lenght(llink head) {
@@ -40,18 +46,18 @@ int list_lenght(llink head) {
     return count;
 }
 
-llink insert_element_recursive(llink* link, int element) {
+llink insert_element_recursive(llink link, int element) {
     
     if(!link) {
-        llink new = malloc(sizeof(struct llink));
+        llink new = malloc(sizeof(struct List));
         if(!new) // if fail while memory allocation
-            return;
+            return new;
        
         new->vertx = element;
         new->next = NULL; 
         return new;   
     } else {
-        link->next = insert_element_recursive(link->next, element)
+        link->next = insert_element_recursive(link->next, element);
         return link;
     }
     
