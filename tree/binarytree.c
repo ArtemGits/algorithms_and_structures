@@ -86,9 +86,6 @@ void prefix_recursive(tree_type root){
 }
 
 
-
-
-
 void suffix_recursive(tree_type root){
 	if(root){
 		suffix_recursive(root->left);

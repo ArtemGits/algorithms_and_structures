@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "binarytree.h"
-
+//#include "copybinarytree.h"
+#include "reverseisotree.h"
 
 void search_test(tree_type tree, int target) {
   tree_type node = search_btree_recursive(tree, target);
@@ -23,9 +24,15 @@ int main() {
     insert_btree(&btree, data[i++]);
   }
   //TODO fix implementation for non found nodes, becouse that doesn't work 
-  search_test(btree, 11);
+  // search_test(btree, 11);
  
- // infix_recursive(btree);
+  //tree_type copybtree = copy_tree_recursive(btree); 
+  //tree_type copybtree = copy_tree(btree); 
+
+  infix_recursive(btree);
+  printf("\n");
+  infix_recursive(reverse_btree_iso(btree));
+
  // printf("\n");
  // prefix_recursive(btree);
  // printf("\n");
